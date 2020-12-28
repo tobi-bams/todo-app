@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
   
   <title>Frontend Mentor | Todo app</title>
 
-  
 </head>
 <body>
   <main>
@@ -18,19 +18,20 @@
       <div class="todoHeader">
         <h1> Todo</h1>
         <div class="modeIcon">
-          <img src="./images/icon-moon.svg" id="modeIconChange">
+          <img src="./images/icon-sun.svg" id="modeIconChange">
         </div>
       </div>
       <form>
-        <div class="inputContainer">
-          <input type="text" name="todoDetail">
+        <div class="form">
+          <div class="radioButton"></div>
+          <input type="text" name="todoInput" id="todoInput" placeholder="Create a new todo...">
         </div>
       </form>
       <div class="todosContainer">
         <div id="todos">
           <div class="todo">
             <div class="radio">
-              <img src="./images/icon-check.svg" class="checks">
+              <img src="./images/icon-check.svg" class="checks" >
             </div>
             <div class="todoTextContainer">
               <p>Complete online JavaScript Course</p>
@@ -95,24 +96,25 @@
             </div>
           </div>
           <div id="footer">
-            <div id="totalItems">
-              <p>5 Items</p>
+            <div>
+              <p class="footerText" id="totalItems">5 Items</p>
             </div>
             <div class="state">
-              <p id="all">All</p>
-              <p id="active">Active</p>
-              <p id="completed">Completed</p>
+              <p id="all" class="footerText">All</p>
+              <p id="active" class="footerText">Active</p>
+              <p id="completed" class="footerText">Completed</p>
             </div>
             <div id="clearCompleted">
-              <p>Clear Completed</p>
+              <p class="footerText">Clear Completed</p>
             </div>
           </div>
         </div>
-        <div class="additionalInfo">
-          <p>Drag and drop to reorder list</p>
-        </div>
+      </div>
+      <div class="additionalInfo">
+        <p class="footerText">Drag and drop to reorder list</p>
       </div>
     </div>
   </main>
+  <script src="./index.js"></script>
 </body>
 </html>
