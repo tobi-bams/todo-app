@@ -21,7 +21,7 @@
           <img src="./images/icon-sun.svg" id="modeIconChange">
         </div>
       </div>
-      <form>
+      <form id="form">
         <div class="form">
           <div class="radioButton"></div>
           <input type="text" name="todoInput" id="todoInput" placeholder="Create a new todo...">
@@ -29,84 +29,18 @@
       </form>
       <div class="todosContainer">
         <div id="todos">
-          <div class="todo">
-            <div class="radio">
-              <img src="./images/icon-check.svg" class="checks" >
-            </div>
-            <div class="todoTextContainer">
-              <p>Complete online JavaScript Course</p>
-            </div>
-            <div class="cancelTodo">
-              <img src="./images/icon-cross.svg">
-            </div>
+        </div>
+        <div id="footer">
+          <div>
+            <p class="footerText" id="totalItems">5 Items left</p>
           </div>
-          <div class="todo">
-            <div class="radio">
-              <img src="./images/icon-check.svg" class="checks">
-            </div>
-            <div class="todoTextContainer">
-              <p>Complete online JavaScript Course</p>
-            </div>
-            <div class="cancelTodo">
-              <img src="./images/icon-cross.svg">
-            </div>
+          <div class="state">
+            <p id="all" class="footerText">All</p>
+            <p id="active" class="footerText">Active</p>
+            <p id="completed" class="footerText">Completed</p>
           </div>
-          <div class="todo">
-            <div class="radio">
-              <img src="./images/icon-check.svg" class="checks">
-            </div>
-            <div class="todoTextContainer">
-              <p>Complete online JavaScript Course</p>
-            </div>
-            <div class="cancelTodo">
-              <img src="./images/icon-cross.svg">
-            </div>
-          </div>
-          <div class="todo">
-            <div class="radio">
-              <img src="./images/icon-check.svg" class="checks">
-            </div>
-            <div class="todoTextContainer">
-              <p>Complete online JavaScript Course</p>
-            </div>
-            <div class="cancelTodo">
-              <img src="./images/icon-cross.svg">
-            </div>
-          </div>
-          <div class="todo">
-            <div class="radio">
-              <img src="./images/icon-check.svg" class="checks">
-            </div>
-            <div class="todoTextContainer">
-              <p>Complete online JavaScript Course</p>
-            </div>
-            <div class="cancelTodo">
-              <img src="./images/icon-cross.svg">
-            </div>
-          </div>
-          <div class="todo">
-            <div class="radio">
-              <img src="./images/icon-check.svg" class="checks">
-            </div>
-            <div class="todoTextContainer">
-              <p>Complete online JavaScript Course</p>
-            </div>
-            <div class="cancelTodo">
-              <img src="./images/icon-cross.svg">
-            </div>
-          </div>
-          <div id="footer">
-            <div>
-              <p class="footerText" id="totalItems">5 Items</p>
-            </div>
-            <div class="state">
-              <p id="all" class="footerText">All</p>
-              <p id="active" class="footerText">Active</p>
-              <p id="completed" class="footerText">Completed</p>
-            </div>
-            <div id="clearCompleted">
-              <p class="footerText">Clear Completed</p>
-            </div>
+          <div id="clearCompleted">
+            <p class="footerText">Clear Completed</p>
           </div>
         </div>
       </div>
