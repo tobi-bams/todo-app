@@ -136,6 +136,7 @@ body.light .todosContainer{
     width: 100%;
     height: 3.7em;
     border-bottom: 1px solid hsl(233, 14%, 35%);
+    cursor: pointer;
 }
 
 body.light .todo{
@@ -178,6 +179,17 @@ body.light .todo{
     /* background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)); */
 }
 
+.radioBackgound{
+    height: 1.1em;
+    width: 1.1em;
+    background-color: hsl(235, 24%, 19%);
+    border-radius: 50%;
+}
+
+body.light .radioBackgound{
+    background-color: hsl(0, 0%, 98%)
+}
+
 body.light .radio{
     border: 1px solid hsl(236, 33%, 92%);
 }
@@ -200,13 +212,25 @@ body.light .radio{
     width: 80%;
 }
 
-.todoTextContainer p{
+.todoText{
     color: hsl(234, 39%, 85%);
     transition: 1s color ease-out;
 }
 
-body.light .todoTextContainer p{
+.todoText:hover{
+    color: hsl(236, 33%, 92%);
+}
+
+body.light .todoText{
     color: hsl(235, 19%, 35%);
+}
+
+.todoTextLight {
+    color: hsl(233, 14%, 35%);
+}
+
+body.light .todoTextLight{
+    color: hsl(233, 11%, 84%);
 }
 
 .footerText{
@@ -234,3 +258,4 @@ body.light .footerText{
 .additionalInfo{
     margin-top: 1em;
 }
+
