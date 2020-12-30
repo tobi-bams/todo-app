@@ -2,14 +2,28 @@ let modeIconChange = document.getElementById("modeIconChange");
 let darkmodeStatus = true;
 let form = document.getElementById("form");
 let todos = document.getElementById("todos");
+let todoInput = document.getElementById("todoInput");
+let all = document.getElementById("all");
+let active = document.getElementById("active");
+let completed = document.getElementById("completed"); 
 
-let todoArray = [{todo: "Complete online JavaScript Course", status: "active"}, {todo: "Jog Around the Park 3x", status:"active"},
-                {todo: "10 minutes meditation", status:"active"}, {todo: "Read for 1 hour", status: "active"},
-            {todo: "Pick up groceries", status: "active"}, {todo: "Complete Todo App on Frontend Mentor", status: "active"}];
+let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active"}, 
+                    {todo: "Pick up groceries", status: "active"}, 
+                    {todo: "Read for 1 hour", status: "active"}, 
+                    {todo: "10 minutes meditation", status:"active"}, 
+                    {todo: "Jog Around the Park 3x", status:"active"}, 
+                    {todo: "Complete online JavaScript Course", status: "completed"}
+                ];
 
 form.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    console.log("Happy");
+    let todoTask = {todo: todoInput.value, status: "active"};
+    todoArray.push(todoTask);
+    todos.innerHTML = '';
+    todoArray.forEach((todo) => {
+        todoUIDisplay(todo);
+    })
+    form.reset();
 })
 
 modeIconChange.addEventListener("click", (evt) => {
@@ -37,7 +51,7 @@ function todoUIDisplay(todo){
     let todoText = document.createElement("p");
     todoText.setAttribute("class", "todoText")
     todoText.addEventListener("click", changetodoStatus);
-    todoText.textContent = todo;
+    todoText.textContent = todo.todo;
     todoTextContainer.appendChild(todoText);
     let cancelTodoContainer = document.createElement("div");
     cancelTodoContainer.setAttribute("class", "cancelTodo");
@@ -48,12 +62,25 @@ function todoUIDisplay(todo){
     todoContainer.appendChild(radioCheckContainer);
     todoContainer.appendChild(todoTextContainer);
     todoContainer.appendChild(cancelTodoContainer);
-    todos.appendChild(todoContainer);
+    todos.prepend(todoContainer);
+    if(todo.status == "completed"){
+        todoText.setAttribute("class", "todoTextLight");
+        todoText.style.textDecoration = "line-through";
+        todoContainer.removeEventListener("mouseenter", todoMouseEnter);
+        todoContainer.removeEventListener("mouseleave", todoMouseLeave);
+        todoContainer.addEventListener("mouseenter", todoCompletedMouseEnter);
+        todoContainer.addEventListener("mouseleave", todoCompletedMouseLeave);
+        radioCheckContainer.removeEventListener("click", radioCheckerClick);
+        todoText.removeEventListener("click", changetodoStatus);
+        radioCheckContainer.style.background = "linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+        let checkImage = document.createElement("img");
+        checkImage.setAttribute("src", "./images/icon-check.svg");
+        radioCheckContainer.appendChild(checkImage);
+    }
 }
 
 todoArray.forEach((todo) => {
-    let todoItem = todo.todo;
-    todoUIDisplay(todoItem);
+    todoUIDisplay(todo);
 });
 
 todos.parentElement.nextElementSibling
@@ -130,6 +157,33 @@ function cancelTodo(evt){
     todoArray.splice(todoIndex, 1);
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
-        todoUIDisplay(todo.todo);
+        todoUIDisplay(todo);
     })
 }
+
+all.addEventListener("click", (evt) => {
+    todos.innerHTML = "";
+    todoArray.forEach((todo) => {
+        todoUIDisplay(todo);
+    })
+});
+
+active.addEventListener("click", (evt) => {
+    todos.innerHTML = "";
+    todoArray.forEach((todo) => {
+        if(todo.status === "active"){
+            todoUIDisplay(todo);
+        }
+    })
+});
+
+completed.addEventListener("click", (evt) => {
+    todos.innerHTML = "";
+    todoArray.forEach((todo) => {
+        if(todo.status === "completed"){
+            todoUIDisplay(todo);
+        }
+    })
+
+    evt.target.style.color = "blue";
+})

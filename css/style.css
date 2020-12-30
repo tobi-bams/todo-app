@@ -259,3 +259,35 @@ body.light .footerText{
     margin-top: 1em;
 }
 
+.state p{
+    cursor: pointer; 
+}
+
+.state p:hover{
+    color: hsl(236, 33%, 92%);
+}
+
+body.light .state p:hover{
+   color: hsl(235, 19%, 35%)
+}
+
+#clearCompletedTask{
+    cursor: pointer;
+}
+
+.active{
+    color: blue;
+}
+
+.nonActive{
+    
+}
+
+#clearCompletedTask:hover{
+    color: hsl(236, 33%, 92%);
+}
+
+body.light #clearCompletedTask:hover{
+    color: hsl(235, 19%, 35%)
+ }
+
