@@ -219,5 +219,10 @@ function totalItemRemaining(){
         return todoTask.status === "active";
     })
 
-    totalItems.textContent = totalItemsLeft.length;
+    // totalItems.textContent = totalItemsLeft.length;
+    if(totalItemsLeft.length <= 1){
+        totalItems.textContent = `${totalItemsLeft.length} Item Left`;
+    }else{
+        totalItems.textContent = `${totalItemsLeft.length} Items Left`;
+    }
 }
