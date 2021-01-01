@@ -28,15 +28,17 @@ let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active
 // Event Listener for the form Submittion
 form.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    let todoTask = {todo: todoInput.value, status: "active"};
-    todoArray.push(todoTask);
-    todos.innerHTML = '';
-    todoArray.forEach((todo) => {
-        todoUIDisplay(todo);
-    })
-    totalItemRemaining();
-    localStorage.setItem("todoArray", JSON.stringify(todoArray));
-    form.reset();
+    if(todoInput.value !== ""){
+        let todoTask = {todo: todoInput.value, status: "active"};
+        todoArray.push(todoTask);
+        todos.innerHTML = '';
+        todoArray.forEach((todo) => {
+            todoUIDisplay(todo);
+        })
+        totalItemRemaining();
+        localStorage.setItem("todoArray", JSON.stringify(todoArray));
+        form.reset();
+    }
 })
 
 // Event Listener for toggling between dark mode and light mode
@@ -299,7 +301,7 @@ function totalItemRemaining(){
     let totalItemsLeft = todoArray.filter((todoTask) => {
         return todoTask.status === "active";
     })
-    
+
     if(totalItemsLeft.length <= 1){
         totalItems.textContent = `${totalItemsLeft.length} Item Left`;
     }else{
