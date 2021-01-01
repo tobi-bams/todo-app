@@ -8,6 +8,10 @@ let active = document.getElementById("active");
 let completed = document.getElementById("completed");
 let clearCompletedTask = document.getElementById("clearCompletedTask");
 let totalItems = document.getElementById("totalItems");
+let deviceSize = window.matchMedia("(min-width: 768px)");
+let allSmall = document.getElementById("allSmall");
+let activeSmall = document.getElementById("activeSmall");
+let completedSmall = document.getElementById("completedSmall");
 
 let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active"}, 
                     {todo: "Pick up groceries", status: "active"}, 
@@ -94,11 +98,15 @@ function todoMouseEnter(evt){
     evt.target.children[0].style.border = "none";
     evt.target.children[0].style.background = "linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"
     evt.target.children[0].appendChild(radioBackground);
-    evt.target.children[2].children[0].style.display = "flex";
+    if(deviceSize.matches){
+        evt.target.children[2].children[0].style.display = "flex";
+    }
 }
 
 function todoMouseLeave(evt){
-    evt.target.children[2].children[0].style.display = "none";
+    if(deviceSize.matches){
+        evt.target.children[2].children[0].style.display = "none";
+    }
     evt.target.children[0].removeChild(evt.target.children[0].children[0]);
     evt.target.children[0].style.background = "transparent";
     evt.target.children[0].style.border = "1px solid hsl(237, 14%, 26%)";
@@ -151,7 +159,9 @@ function todoCompletedMouseEnter(evt){
 }
 
 function todoCompletedMouseLeave(evt){
-    evt.target.children[2].children[0].style.display = "none";
+    if(deviceSize.matches){
+        evt.target.children[2].children[0].style.display = "none";
+    }
 }
 
 function cancelTodo(evt){
@@ -190,6 +200,41 @@ active.addEventListener("click", (evt) => {
 });
 
 completed.addEventListener("click", (evt) => {
+    todos.innerHTML = "";
+    todoArray.forEach((todo) => {
+        if(todo.status === "completed"){
+            todoUIDisplay(todo);
+        }
+    })
+
+    evt.target.setAttribute("class", "active");
+    evt.target.previousElementSibling.setAttribute("class", "nonActive");
+    evt.target.previousElementSibling.previousElementSibling.setAttribute("class", "nonActive");
+})
+
+allSmall.addEventListener("click", (evt) => {
+    todos.innerHTML = "";
+    todoArray.forEach((todo) => {
+        todoUIDisplay(todo);
+    })
+    evt.target.setAttribute("class", "active");
+    evt.target.nextElementSibling.setAttribute("class", "nonActive");
+    evt.target.nextElementSibling.nextElementSibling.setAttribute("class", "nonActive");
+});
+
+activeSmall.addEventListener("click", (evt) => {
+    todos.innerHTML = "";
+    todoArray.forEach((todo) => {
+        if(todo.status === "active"){
+            todoUIDisplay(todo);
+        }
+    })
+    evt.target.setAttribute("class", "active");
+    evt.target.nextElementSibling.setAttribute("class", "nonActive");
+    evt.target.previousElementSibling.setAttribute("class", "nonActive");
+});
+
+completedSmall.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
         if(todo.status === "completed"){

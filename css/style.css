@@ -117,6 +117,7 @@ body.light #todoInput{
 
 .todosContainer{
     background-color: hsl(235, 24%, 19%);
+    border-radius: 5px;
 }
 
 body.light .todosContainer{
@@ -310,3 +311,70 @@ body.light #clearCompletedTask:hover{
     color: hsl(235, 19%, 35%)
  }
 
+ .smallState{
+    display: none;
+}
+
+@media(max-width: 414px){
+    body{
+        font-size: 14px;
+    }
+    .main{
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .header{
+        background: url("../images/bg-mobile-dark.jpg");
+        background-repeat: no-repeat;
+        height: 35vh;
+        background-size: cover;
+        transition: 1s background ease-out;
+    }
+
+    .bottom{
+        height: 65vh;
+    }
+    
+    body.light .header{
+        background: url("../images/bg-mobile-light.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .cancelTodo{
+       margin-right: 1em;
+    }
+
+    .state{
+        display: none;
+    }
+
+    .cancelTodo img{
+        display: block;
+    }
+
+    .smallState{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-color: hsl(235, 24%, 19%);
+        margin-top: 1.2em;
+        height: 3em;
+        border-radius: 5px;
+    }
+
+    body.light .smallState{
+        background-color: hsl(0, 0%, 98%);
+    }
+
+    .smallState p{
+        margin-right: 1em;
+        margin-left: 1em;
+        cursor: pointer;
+        /* color: hsl(233, 14%, 35%); */
+    }
+}
