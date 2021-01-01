@@ -129,6 +129,9 @@ body.light .todosContainer{
     display: flex; 
     flex-direction: column;
     border-radius: 5px;
+    height: 22.2em;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
@@ -139,6 +142,7 @@ body.light .todosContainer{
     height: 3.7em;
     border-bottom: 1px solid hsl(233, 14%, 35%);
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 body.light .todo{
