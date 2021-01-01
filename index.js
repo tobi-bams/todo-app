@@ -7,6 +7,7 @@ let all = document.getElementById("all");
 let active = document.getElementById("active");
 let completed = document.getElementById("completed");
 let clearCompletedTask = document.getElementById("clearCompletedTask");
+let totalItems = document.getElementById("totalItems");
 
 let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active"}, 
                     {todo: "Pick up groceries", status: "active"}, 
@@ -24,6 +25,7 @@ form.addEventListener("submit", (evt) => {
     todoArray.forEach((todo) => {
         todoUIDisplay(todo);
     })
+    totalItemRemaining();
     form.reset();
 })
 
@@ -82,9 +84,9 @@ function todoUIDisplay(todo){
 
 todoArray.forEach((todo) => {
     todoUIDisplay(todo);
+    totalItemRemaining();
 });
 
-todos.parentElement.nextElementSibling
 
 function todoMouseEnter(evt){
     let radioBackground = document.createElement("div");
@@ -120,6 +122,7 @@ function changetodoStatus(evt){
         return evt.target.textContent == todo.todo;
     })
     todoArray[todoIndex].status = "completed";
+    totalItemRemaining();
 }
 
 function radioCheckerClick(evt){
@@ -140,6 +143,7 @@ function radioCheckerClick(evt){
     evt.target.parentElement.parentElement.addEventListener("mouseenter", todoCompletedMouseEnter);
     evt.target.parentElement.parentElement.addEventListener("mouseleave", todoCompletedMouseLeave);
     evt.target.parentElement.removeChild(evt.target.parentElement.children[0]);
+    totalItemRemaining();
 }
 
 function todoCompletedMouseEnter(evt){
@@ -160,6 +164,7 @@ function cancelTodo(evt){
     todoArray.forEach((todo) => {
         todoUIDisplay(todo);
     })
+    totalItemRemaining();
 }
 
 all.addEventListener("click", (evt) => {
@@ -208,3 +213,11 @@ clearCompletedTask.addEventListener("click", (evt) => {
         todoUIDisplay(todoTassk);
     })
 })
+
+function totalItemRemaining(){
+    let totalItemsLeft = todoArray.filter((todoTask) => {
+        return todoTask.status === "active";
+    })
+
+    totalItems.textContent = totalItemsLeft.length;
+}
