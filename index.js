@@ -1,3 +1,4 @@
+// Declaration of variables
 let modeIconChange = document.getElementById("modeIconChange");
 let darkmodeStatus = true;
 let form = document.getElementById("form");
@@ -14,6 +15,7 @@ let activeSmall = document.getElementById("activeSmall");
 let completedSmall = document.getElementById("completedSmall");
 let localStorage = window.localStorage;
 
+// Initializing TODO Array
 let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active"}, 
                     {todo: "Pick up groceries", status: "active"}, 
                     {todo: "Read for 1 hour", status: "active"}, 
@@ -22,6 +24,8 @@ let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active
                     {todo: "Complete online JavaScript Course", status: "completed"}
                 ];
 
+
+// Event Listener for the form Submittion
 form.addEventListener("submit", (evt) => {
     evt.preventDefault();
     let todoTask = {todo: todoInput.value, status: "active"};
@@ -35,6 +39,7 @@ form.addEventListener("submit", (evt) => {
     form.reset();
 })
 
+// Event Listener for toggling between dark mode and light mode
 modeIconChange.addEventListener("click", (evt) => {
     document.body.classList.toggle("light");
     if(darkmodeStatus === true){
@@ -47,6 +52,8 @@ modeIconChange.addEventListener("click", (evt) => {
     }
 })
 
+
+// Function for the UI display of the Todo task
 function todoUIDisplay(todo){
     let todoContainer = document.createElement("div");
     todoContainer.setAttribute("class", "todo");
@@ -88,6 +95,7 @@ function todoUIDisplay(todo){
     }
 }
 
+// Initializing localstorage and UI display on the screen
 if(localStorage.getItem("todoArray")){
     let localStorageArray = localStorage.getItem("todoArray");
     todoArray = [...JSON.parse(localStorageArray)];
@@ -103,6 +111,7 @@ if(localStorage.getItem("todoArray")){
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
+// Event listener function for when the mouse enters the todotask area
 function todoMouseEnter(evt){
     let radioBackground = document.createElement("div");
     radioBackground.setAttribute("class", "radioBackgound");
@@ -114,6 +123,7 @@ function todoMouseEnter(evt){
     }
 }
 
+// Event listener function for when the mouse leaves the todotask area
 function todoMouseLeave(evt){
     if(deviceSize.matches){
         evt.target.children[2].children[0].style.display = "none";
@@ -123,7 +133,7 @@ function todoMouseLeave(evt){
     evt.target.children[0].style.border = "1px solid hsl(237, 14%, 26%)";
 }
 
-
+// Event listener function for when the user clicks on the todo task text itself
 function changetodoStatus(evt){
     evt.target.style.textDecoration = "line-through";
     evt.target.setAttribute("class", "todoTextLight");
@@ -145,6 +155,7 @@ function changetodoStatus(evt){
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
+// Event listener function for when the user clicks on radio button
 function radioCheckerClick(evt){
     evt.target.parentElement.nextElementSibling.children[0].style.textDecoration = "line-through";
     evt.target.parentElement.nextElementSibling.children[0].setAttribute("class", "todoTextLight");
@@ -167,16 +178,19 @@ function radioCheckerClick(evt){
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
+// Event listener function for when a todo task has been marked as completed and the mouse enters
 function todoCompletedMouseEnter(evt){
     evt.target.children[2].children[0].style.display = "block";
 }
 
+// Event listener function for when a todo task has been marked as completed and the mouse leaves
 function todoCompletedMouseLeave(evt){
     if(deviceSize.matches){
         evt.target.children[2].children[0].style.display = "none";
     }
 }
 
+// Event Listener function for when a user clicks on the cancel button
 function cancelTodo(evt){
     let todoText = evt.target.parentElement.previousElementSibling.children[0].textContent;
     let todoIndex = todoArray.findIndex((todo) => {
@@ -191,6 +205,7 @@ function cancelTodo(evt){
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
+// event listerner for when the user clicks on ALL to filter the todo task list on large Screens
 all.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
@@ -201,6 +216,7 @@ all.addEventListener("click", (evt) => {
     evt.target.nextElementSibling.nextElementSibling.setAttribute("class", "nonActive");
 });
 
+// event listerner for when the user clicks on ACTIVE to filter the todo task list on large Screens
 active.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
@@ -213,6 +229,7 @@ active.addEventListener("click", (evt) => {
     evt.target.previousElementSibling.setAttribute("class", "nonActive");
 });
 
+// event listerner for when the user clicks on COMPLETED to filter the todo task list on large Screens
 completed.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
@@ -226,6 +243,7 @@ completed.addEventListener("click", (evt) => {
     evt.target.previousElementSibling.previousElementSibling.setAttribute("class", "nonActive");
 })
 
+// event listerner for when the user clicks on ALL to filter the todo task list on small Screens
 allSmall.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
@@ -236,6 +254,7 @@ allSmall.addEventListener("click", (evt) => {
     evt.target.nextElementSibling.nextElementSibling.setAttribute("class", "nonActive");
 });
 
+// event listerner for when the user clicks on ACTIVE to filter the todo task list on small Screens
 activeSmall.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
@@ -248,6 +267,7 @@ activeSmall.addEventListener("click", (evt) => {
     evt.target.previousElementSibling.setAttribute("class", "nonActive");
 });
 
+// event listerner for when the user clicks on COMPLETED to filter the todo task list on small Screens
 completedSmall.addEventListener("click", (evt) => {
     todos.innerHTML = "";
     todoArray.forEach((todo) => {
@@ -261,6 +281,7 @@ completedSmall.addEventListener("click", (evt) => {
     evt.target.previousElementSibling.previousElementSibling.setAttribute("class", "nonActive");
 })
 
+// Event Listener for when the CLEAR COMPLETED TASK BUTTON is clicked
 clearCompletedTask.addEventListener("click", (evt) => {
    let activeArray = todoArray.filter((todoTask) => {
         return todoTask.status === "active";
@@ -273,12 +294,12 @@ clearCompletedTask.addEventListener("click", (evt) => {
     })
 })
 
+// Function to calculate the total amount of ACTIVE task remaining in the todo list
 function totalItemRemaining(){
     let totalItemsLeft = todoArray.filter((todoTask) => {
         return todoTask.status === "active";
     })
-
-    // totalItems.textContent = totalItemsLeft.length;
+    
     if(totalItemsLeft.length <= 1){
         totalItems.textContent = `${totalItemsLeft.length} Item Left`;
     }else{
