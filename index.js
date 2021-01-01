@@ -5,7 +5,8 @@ let todos = document.getElementById("todos");
 let todoInput = document.getElementById("todoInput");
 let all = document.getElementById("all");
 let active = document.getElementById("active");
-let completed = document.getElementById("completed"); 
+let completed = document.getElementById("completed");
+let clearCompletedTask = document.getElementById("clearCompletedTask");
 
 let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active"}, 
                     {todo: "Pick up groceries", status: "active"}, 
@@ -166,6 +167,9 @@ all.addEventListener("click", (evt) => {
     todoArray.forEach((todo) => {
         todoUIDisplay(todo);
     })
+    evt.target.setAttribute("class", "active");
+    evt.target.nextElementSibling.setAttribute("class", "nonActive");
+    evt.target.nextElementSibling.nextElementSibling.setAttribute("class", "nonActive");
 });
 
 active.addEventListener("click", (evt) => {
@@ -175,6 +179,9 @@ active.addEventListener("click", (evt) => {
             todoUIDisplay(todo);
         }
     })
+    evt.target.setAttribute("class", "active");
+    evt.target.nextElementSibling.setAttribute("class", "nonActive");
+    evt.target.previousElementSibling.setAttribute("class", "nonActive");
 });
 
 completed.addEventListener("click", (evt) => {
@@ -185,5 +192,19 @@ completed.addEventListener("click", (evt) => {
         }
     })
 
-    evt.target.style.color = "blue";
+    evt.target.setAttribute("class", "active");
+    evt.target.previousElementSibling.setAttribute("class", "nonActive");
+    evt.target.previousElementSibling.previousElementSibling.setAttribute("class", "nonActive");
+})
+
+clearCompletedTask.addEventListener("click", (evt) => {
+   let activeArray = todoArray.filter((todoTask) => {
+        return todoTask.status === "active";
+   })
+   todoArray = [...activeArray];
+
+    todos.innerHTML = "";
+    todoArray.forEach((todoTassk) => {
+        todoUIDisplay(todoTassk);
+    })
 })

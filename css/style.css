@@ -278,9 +278,28 @@ body.light .state p:hover{
 .active{
     color: blue;
 }
+body.light .active:hover{
+    color: hsl(235, 19%, 35%)
+}
+
+.active:hover{
+    color: hsl(235, 19%, 35%);
+}
 
 .nonActive{
-    
+    color: hsl(233, 14%, 35%); 
+}
+
+body.light .nonActive{
+    color:hsl(236, 9%, 61%); 
+}
+
+.nonActive:hover{
+    color: hsl(233, 14%, 35%); 
+}
+
+body.light .nonActive:hover{
+    color:hsl(235, 19%, 35%); 
 }
 
 #clearCompletedTask:hover{
