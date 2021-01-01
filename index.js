@@ -12,6 +12,7 @@ let deviceSize = window.matchMedia("(min-width: 768px)");
 let allSmall = document.getElementById("allSmall");
 let activeSmall = document.getElementById("activeSmall");
 let completedSmall = document.getElementById("completedSmall");
+let localStorage = window.localStorage;
 
 let todoArray = [ {todo: "Complete Todo App on Frontend Mentor", status: "active"}, 
                     {todo: "Pick up groceries", status: "active"}, 
@@ -30,6 +31,7 @@ form.addEventListener("submit", (evt) => {
         todoUIDisplay(todo);
     })
     totalItemRemaining();
+    localStorage.setItem("todoArray", JSON.stringify(todoArray));
     form.reset();
 })
 
@@ -86,11 +88,20 @@ function todoUIDisplay(todo){
     }
 }
 
-todoArray.forEach((todo) => {
-    todoUIDisplay(todo);
-    totalItemRemaining();
-});
-
+if(localStorage.getItem("todoArray")){
+    let localStorageArray = localStorage.getItem("todoArray");
+    todoArray = [...JSON.parse(localStorageArray)];
+    todoArray.forEach((todo) => {
+        todoUIDisplay(todo);
+        totalItemRemaining();
+    });
+}else{
+    todoArray.forEach((todo) => {
+        todoUIDisplay(todo);
+        totalItemRemaining();
+    });
+    localStorage.setItem("todoArray", JSON.stringify(todoArray));
+}
 
 function todoMouseEnter(evt){
     let radioBackground = document.createElement("div");
@@ -131,6 +142,7 @@ function changetodoStatus(evt){
     })
     todoArray[todoIndex].status = "completed";
     totalItemRemaining();
+    localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
 function radioCheckerClick(evt){
@@ -152,6 +164,7 @@ function radioCheckerClick(evt){
     evt.target.parentElement.parentElement.addEventListener("mouseleave", todoCompletedMouseLeave);
     evt.target.parentElement.removeChild(evt.target.parentElement.children[0]);
     totalItemRemaining();
+    localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
 function todoCompletedMouseEnter(evt){
@@ -175,6 +188,7 @@ function cancelTodo(evt){
         todoUIDisplay(todo);
     })
     totalItemRemaining();
+    localStorage.setItem("todoArray", JSON.stringify(todoArray));
 }
 
 all.addEventListener("click", (evt) => {
